@@ -5,6 +5,7 @@ if(empty($_SESSION["teacher"]))
 {
 	header("location:index.php");
 }
+
 ?>
 
 
@@ -34,7 +35,7 @@ if(empty($_SESSION["teacher"]))
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          
+
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,7 +47,7 @@ if(empty($_SESSION["teacher"]))
                 <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>
                 </div>
-                <input type="text"  id="searchInput" class="form-control bg-transparent border-0" placeholder="Search Here">
+                <input type="text" id="searchInput"class="form-control bg-transparent border-0" placeholder="Search Here">
               </div>
             </form>
           </div>
@@ -86,6 +87,8 @@ if(empty($_SESSION["teacher"]))
                 </ul>
               </div>
             </li>
+           
+
             
           </ul>
         </nav>
@@ -98,23 +101,24 @@ if(empty($_SESSION["teacher"]))
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Readers Details</h3>
-             
+              <h3 class="page-title"> Writers Details</h3>
+              
             </div>
          
             
               <div class="col-12 grid-margin stretch-card">
               <div style="overflow-x: auto; overflow-y: auto;">
-            
+
               <table class="table table-bordered table-striped table-hover" id="dataTable">
               <thead class="thead-dark">
                   <?php
 					  require("connection.php");
-					  $res=$con->query("select * from `tb_rlogin`");
+					  $res=$con->query("select * from `tb_jlogin`");
 					  $count=$res->num_rows;
             
 					  ?>
-         <tr>
+
+	<tr>
 	  <th>Sl.no</th>
 	  <th>Name</th>
 	  <th>Email</th>
@@ -136,23 +140,22 @@ if(empty($_SESSION["teacher"]))
 					
 <tr>
             <td><?php echo $i++;?></td>
-            <td><?php echo $row["rname"];?></td>
-            <td><?php echo $row["remail"];?></td>
-            <td><?php echo $row["rphoneno"];?></td>
-            <td><?php echo str_repeat('*', strlen($row["rpassword"])); ?></td>
-
+            <td><?php echo $row["jname"];?></td>
+            <td><?php echo $row["jemail"];?></td>
+            <td><?php echo $row["jphoneno"];?></td>
+            <td><?php echo str_repeat('*', strlen($row["jpassword"])); ?></td>
            
-            <td><a href="deletereader.php?del=<?php echo $row["Id"];?>"onclick="return confirm('Do you want to delete?')" class="btn btn-outline-danger" >DELETE</a></td>
+    <td><a href="deletewriter.php?del=<?php echo $row["id"];?>" onclick="return confirm('Do you want to delete?')" class="btn btn-outline-danger" >DELETE</a></td>
        
           
 </tr>
+
 <?php
               }
             }
             ?>
   </tbody>
 </table>
-       
           </div>
                  
               </div>
@@ -174,6 +177,7 @@ if(empty($_SESSION["teacher"]))
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+
     <script>
   document.getElementById("searchInput").addEventListener("input", function() {
     let filterValue = this.value.toLowerCase();

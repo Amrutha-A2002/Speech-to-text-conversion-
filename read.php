@@ -5,6 +5,7 @@ if(empty($_SESSION["teacher"]))
 {
 	header("location:index.php");
 }
+
 ?>
 
 
@@ -34,7 +35,7 @@ if(empty($_SESSION["teacher"]))
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          
+         
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,7 +47,7 @@ if(empty($_SESSION["teacher"]))
                 <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>
                 </div>
-                <input type="text"  id="searchInput" class="form-control bg-transparent border-0" placeholder="Search Here">
+                <input type="text" id="searchInput" class="form-control bg-transparent border-0" placeholder="Search projects">
               </div>
             </form>
           </div>
@@ -82,10 +83,10 @@ if(empty($_SESSION["teacher"]))
                   <li class="nav-item"> <a class="nav-link" href="comments.php">Comments</a></li>
                   <li class="nav-item"> <a class="nav-link" href="logout.php">Logout</a></li>
                  
-                 
                 </ul>
               </div>
             </li>
+
             
           </ul>
         </nav>
@@ -98,62 +99,55 @@ if(empty($_SESSION["teacher"]))
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Readers Details</h3>
-             
+              <h3 class="page-title"> Read Your Story</h3>
+            
             </div>
          
             
-              <div class="col-12 grid-margin stretch-card">
-              <div style="overflow-x: auto; overflow-y: auto;">
+              <div class="col-lg-12">
+          
             
-              <table class="table table-bordered table-striped table-hover" id="dataTable">
-              <thead class="thead-dark">
-                  <?php
-					  require("connection.php");
-					  $res=$con->query("select * from `tb_rlogin`");
-					  $count=$res->num_rows;
-            
-					  ?>
-         <tr>
-	  <th>Sl.no</th>
-	  <th>Name</th>
-	  <th>Email</th>
-	  <th>Phone No</th>
-    <th>Password</th>
-   
-    <th>Delete</th>
+                 
+                <?php
+require("connection.php");
+$id=$_REQUEST["edit"];
+$res=$con->query("select * from `tb_stories` where `id`='$id'");
+$count=$res->num_rows;
 
-	</tr>
-  </thead>
-  <tbody>
-	<?php
+ 
+
+
 						if($count>0)
-						{					  $i=1;
+						{					
 
 							while($row=$res->fetch_assoc())
 							{
 								?>
-					
-<tr>
-            <td><?php echo $i++;?></td>
-            <td><?php echo $row["rname"];?></td>
-            <td><?php echo $row["remail"];?></td>
-            <td><?php echo $row["rphoneno"];?></td>
-            <td><?php echo str_repeat('*', strlen($row["rpassword"])); ?></td>
+                    
+				
+                       <center>
+                       <h4><?php echo $row["Title"];?>
+                            </h4><br>
+                            <p><?php echo $row["Storytype"];?></p>
+                            <img src="<?php echo "../storypics/". $row["Image"];?>" height="100px" width="100px">
 
-           
-            <td><a href="deletereader.php?del=<?php echo $row["Id"];?>"onclick="return confirm('Do you want to delete?')" class="btn btn-outline-danger" >DELETE</a></td>
+                           <br>
+                           <br>
+                            <span></span>
+                            <p><?php echo $row["Story"];?></p>
+                           
+                       
+
+							
+                    
+                    <?php
+							}
+						}
+						?>
+                        </center>
+  
        
-          
-</tr>
-<?php
-              }
-            }
-            ?>
-  </tbody>
-</table>
-       
-          </div>
+    
                  
               </div>
               

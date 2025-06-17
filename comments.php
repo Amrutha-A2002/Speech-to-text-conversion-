@@ -108,49 +108,74 @@ if(empty($_SESSION["teacher"]))
             
               <table class="table table-bordered table-striped table-hover" id="dataTable">
               <thead class="thead-dark">
-                  <?php
-					  require("connection.php");
-					  $res=$con->query("select * from `tb_rlogin`");
-					  $count=$res->num_rows;
-            
-					  ?>
-         <tr>
-	  <th>Sl.no</th>
-	  <th>Name</th>
-	  <th>Email</th>
-	  <th>Phone No</th>
-    <th>Password</th>
-   
-    <th>Delete</th>
-
-	</tr>
-  </thead>
-  <tbody>
-	<?php
-						if($count>0)
-						{					  $i=1;
-
-							while($row=$res->fetch_assoc())
-							{
-								?>
-					
-<tr>
-            <td><?php echo $i++;?></td>
-            <td><?php echo $row["rname"];?></td>
-            <td><?php echo $row["remail"];?></td>
-            <td><?php echo $row["rphoneno"];?></td>
-            <td><?php echo str_repeat('*', strlen($row["rpassword"])); ?></td>
-
-           
-            <td><a href="deletereader.php?del=<?php echo $row["Id"];?>"onclick="return confirm('Do you want to delete?')" class="btn btn-outline-danger" >DELETE</a></td>
-       
-          
-</tr>
+                
 <?php
-              }
+require("connection.php");
+
+// Fetch comments with story title and author's name from writer table
+$res = $con->query("
+    SELECT c.comment_id, c.comment_text, c.story_id, 
+           s.Title, w.jname ,u.rname,u.remail
+    FROM tb_comments c
+    JOIN tb_stories s ON c.story_id = s.id
+    JOIN tb_jlogin w ON s.w_id = w.id
+     JOIN tb_rlogin u ON c.user_id = u.Id
+");
+
+
+
+
+
+
+
+
+
+
+
+
+
+$count = $res->num_rows;
+?>
+<table class="table table-bordered table-striped table-hover" id="dataTable">
+              <thead class="thead-dark">
+                
+        <tr>
+            <th>Sl.no</th>
+            <th>Comment</th>
+            <th>Story Title</th>
+            <th>Author Name</th>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($count > 0) {
+            $i = 1;
+            while ($row = $res->fetch_assoc()) {
+        ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row["comment_text"]; ?></td>
+                    <td><?php echo $row["Title"]; ?></td>
+                    <td><?php echo $row["jname"]; ?></td>
+                    <td><?php echo $row["rname"]; ?></td>
+                    <td><?php echo $row["remail"]; ?></td>
+                    <td>
+                        <a href="deletecomments.php?del=<?php echo $row["comment_id"]; ?>" onclick="return confirm('Do you want to delete?')" class="btn btn-outline-danger">
+                            DELETE
+                        </a>
+                    </td>
+                </tr>
+        <?php
             }
-            ?>
-  </tbody>
+        }
+        ?>
+    </tbody>
+</table>
+
+ </tbody>
 </table>
        
           </div>
@@ -203,3 +228,12 @@ if(empty($_SESSION["teacher"]))
     <!-- End custom js for this page -->
   </body>
 </html>
+
+
+
+
+
+
+
+
+

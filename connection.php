@@ -1,14 +1,8 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "db_literaryhub";
-$port = 3306; // Change this if your MySQL is running on a different port
-
-$con = mysqli_connect($host, $user, $password, $database, $port);
-
+$con= mysqli_connect("localhost:3306", "root", "", "db_literaryhub");
+ 
 // Check connection
 if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed");
 }
 ?>
