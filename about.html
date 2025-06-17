@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        background: linear-gradient(135deg, #e0f7fa, #fff);
+        color: #333;
+      }
+      
+      .about-container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+      
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .header h1 {
+        font-size: 3rem;
+        color: #00796b;
+        animation: fadeIn 1s ease forwards;
+      }
+      
+      .header p {
+        font-size: 1.3rem;
+        color: #555;
+        margin-top: 10px;
+        animation: slideIn 1.2s ease forwards;
+      }
+      
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInUp 1.5s ease forwards;
+      }
+      
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+      }
+      
+      .about-text h2 {
+        font-size: 2rem;
+        color: #004d40;
+        margin-bottom: 20px;
+      }
+      
+      .about-text p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+      
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        text-align: center;
+      }
+      
+      .about-image img {
+        max-width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease;
+      }
+      
+      .about-image img:hover {
+        transform: scale(1.05);
+      }
+      
+      .footer {
+        margin-top: 60px;
+        text-align: center;
+        font-size: 1rem;
+        color: #888;
+      }
+      
+      /* Animations */
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes slideIn {
+        0% { opacity: 0; transform: translateX(-30px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+      
+      @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      .back-btn-container {
+        text-align: center;
+        margin: 40px 0 20px;
+      }
+      
+      .back-button {
+        display: inline-block;
+        padding: 12px 28px;
+        background: linear-gradient(135deg, #26a69a, #00796b);
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background 0.4s ease, transform 0.2s ease;
+      }
+      
+      .back-button:hover {
+        background: linear-gradient(135deg, #00796b, #004d40);
+        transform: scale(1.05);
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="about-container">
+    <header class="header">
+      <h1 class="fade-in">About Us</h1>
+      <p class="slide-in">Empowering voices, one story at a time.</p>
+    </header>
+
+    <section class="about-content">
+      <div class="about-text">
+        <h2>Our Mission</h2>
+        <p>
+          Our platform bridges the gap between creative writers and passionate readers using advanced voice-to-text technology. We provide writers the freedom to narrate their stories in real-time, converting speech into compelling text using deep neural networks.
+        </p>
+        <p>
+          Readers can enjoy categorized stories, leave feedback, and interact with content in a seamless and interactive environment. Administrators ensure the system runs efficiently, managing content and ensuring a smooth user experience.
+        </p>
+        <p>
+          We believe storytelling should be as natural as speaking and as accessible as reading. Whether you're sharing your imagination or diving into someone else's, our system brings stories to life with a voice.
+        </p>
+      </div>
+
+      <div class="about-image fade-in-up">
+        <img src="images/about.png" alt="Story Illustration">
+      </div>
+    </section>
+    <div class="back-btn-container">
+        <a href="index.php" class="back-button">Back to Home</a>
+      </div>
+      
+
+    <footer class="footer">
+      <p>&copy; 2025 Storyhub. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
